@@ -112,7 +112,7 @@ flag = [Stru.index[i] in compounds.Name.to_list() for i in range(len(Stru))]
 Stru = Stru[flag]  # 138 in total
 S = MinMaxScaler().fit_transform(Stru)
 Stru = pd.DataFrame(S, columns=Stru.columns, index=Stru.index)
-# Stru = Stru.iloc[0:110]  # ~80% as training set
+Stru = Stru.iloc[0:110]  # ~80% as training set
 flag = (CEL_info.ORGAN == 'Liver') & (CEL_info.SINGLE_REPEAT_TYPE == 'Repeat') & (CEL_info.DOSE_LEVEL != 'Control')
 CEL_info = CEL_info[flag]
 # for dose in CEL_info.DOSE_LEVEL.unique():
