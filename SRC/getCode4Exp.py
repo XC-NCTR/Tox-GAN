@@ -11,18 +11,16 @@ import scipy.spatial.distance as dis
 import itertools
 import os
 
-#CEL_info = pd.read_csv("/account/xchen/workspace/TGx_GAN/Data/open_tggates_cel_file_attribute.csv")
-#CELs = CEL_info.BARCODE.values
-Exp = pd.read_csv("/account/bgong/workspace/TGP2012/Rat/in_vivo/Liver/Repeat/EXPRS.tsv.gz", sep="\t",index_col=0).T
+Exp = pd.read_csv("../Data/EXPRS.tsv", sep="\t",index_col=0).T
 
 min_max_scaler = MinMaxScaler()
 E = min_max_scaler.fit_transform(Exp)
 E = torch.tensor(E).float()
 
-with open('/account/xchen/workspace/TGx_GAN/Data/hyperparameter_AE4Exp.json') as fp:
+with open('../Data/hyperparameter_AE4Exp.json') as fp:
     hparam = json.load(fp)
 
-hparam['save_path'] = '/account/xchen/workspace/TGx_GAN/AE4Exp/Exp_repeat/'
+hparam['save_path'] = '../AE4Exp/Exp_repeat/'
 
 if not os.path.exists(hparam['save_path']):
     os.makedirs(hparam['save_path'])
@@ -43,4 +41,4 @@ with torch.no_grad():
 
 df = pd.DataFrame(code)
 df.index = Exp.index
-df.to_csv('/account/xchen/workspace/TGx_GAN/Data/ExpCode_repeat.tsv', sep='\t', index=True)
+df.to_csv('../Data/ExpCode_repeat.tsv', sep='\t', index=True)

@@ -1,0 +1,11 @@
+{
+"input_size": 31099, 
+"code_size": 1826,  
+"learningRate": 0.0001, 
+"drop_rate": 0.5,  
+"epoch": 1000, 
+"n_repeats": 1, 
+"n_splits": 5, 
+"patience": 15,
+"save_path": ""
+}

@@ -1,0 +1,144 @@
+Name
+acetaminophen
+isoniazid
+carbon tetrachloride
+valproic acid
+phenobarbital
+rifampicin
+phenylbutazone
+clofibrate
+naphthyl isothiocyanate
+allyl alcohol
+indomethacin
+chlorpromazine
+thioacetamide
+omeprazole
+ethionine
+aspirin
+carbamazepine
+diclofenac
+nitrofurantoin
+benzbromarone
+hexachlorobenzene
+diazepam
+cyclophosphamide
+methapyrilene
+phenytoin
+WY-14643
+gemfibrozil
+bromobenzene
+coumarin
+allopurinol
+propylthiouracil
+amiodarone
+sulfasalazine
+cimetidine
+perhexiline
+azathioprine
+ketoconazole
+glibenclamide
+adapin
+labetalol
+methyltestosterone
+haloperidol
+thioridazine
+pemoline
+metformin
+fluphenazine
+methimazole
+monocrotaline
+vitamin A
+griseofulvin
+flutamide
+tamoxifen
+chlormezanone
+ethinylestradiol
+methyldopa
+tetracycline
+lomustine
+ciprofloxacin
+tacrine
+moxisylyte
+iproniazid
+chloramphenicol
+nitrofurazone
+ibuprofen
+naproxen
+quinidine
+imipramine
+amitriptyline
+hydroxyzine
+mefenamic acid
+famotidine
+ranitidine
+nicotinic acid
+erythromycin ethylsuccinate
+ethambutol
+furosemide
+chlorpheniramine
+nifedipine
+diltiazem
+tannic acid
+captopril
+enalapril
+theophylline
+caffeine
+papaverine
+fenofibrate
+chlorpropamide
+penicillamine
+sulindac
+triamterene
+disopyramide
+mexiletine
+tiopronin
+phalloidin
+acetazolamide
+disulfiram
+promethazine
+colchicine
+tolbutamide
+sulpiride
+acarbose
+simvastatin
+ajmaline
+dantrolene
+triazolam
+clomipramine
+trimethadione
+terbinafine
+meloxicam
+lornoxicam
+chlormadinone
+danazol
+bendazac
+benziodarone
+etoposide
+acetamidofluorene
+nitrosodiethylamine
+ticlopidine
+cisplatin
+carboplatin
+bromoethylamine
+ethionamide
+nimesulide
+ethanol
+phenacetin
+bucetin
+phenylanthranilic acid
+cyclosporine A
+puromycin aminonucleoside
+gentamicin
+doxorubicin
+cephalothin
+rosiglitazone maleate
+rotenone
+2,4-dinitrophenol
+fluoxetine hydrochloride
+methylene dianiline
+butylated hydroxyanisole
+amphotericin B
+desmopressin acetate
+1% cholesterol + 0.25% sodium cholate
+acetamide
+propranolol
