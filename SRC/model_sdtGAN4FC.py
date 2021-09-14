@@ -103,7 +103,7 @@ if cuda:
     # adversarial_loss.cuda()
 
 # Configure data_train loader
-path = r'/account/xchen/workspace/TGx_GAN/'
+
 Stru = pd.read_csv(os.path.join(path, 'Data/MolDescriptors_TGGATEs.tsv'), index_col=0, sep="\t")
 Exp = pd.read_csv(os.path.join(path, 'Data/ExpCode_FC_repeat.tsv'), index_col=0, sep="\t")
 CEL_info = pd.read_csv(os.path.join(path, 'Data/open_tggates_cel_file_attribute.csv'))
@@ -161,8 +161,8 @@ for i in range(len(CEL_info)):
         D.append(Dose(CEL_info.iloc[i].DOSE_LEVEL))
 
 S = torch.tensor(S.to_numpy(dtype=np.float64), device=device).float()
-# min_max_scaler = MinMaxScaler()
-# E = min_max_scaler.fit_transform(E)
+min_max_scaler = MinMaxScaler()
+E = min_max_scaler.fit_transform(E)
 E = torch.tensor(E.to_numpy(dtype=np.float64), device=device).float()
 T = torch.tensor(T, device=device).float().reshape(len(T), -1)
 D = torch.tensor(D, device=device).float().reshape(len(D), -1)
