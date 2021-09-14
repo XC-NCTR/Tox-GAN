@@ -4,4 +4,11 @@ In vivo Toxicogenomics (TGx) has been widely applied in the toxicology field. Ho
 We further exemplified the potential utilities of the proposed TGx-GAN in facilitating 28-day repeated dose toxicity studies.<br>
 
 This repository contains the programming code we developed for this paper. For more details, please refer to our paper.
-## Code
+
+## Python library requirements:
+python=3.8.5
+pytorch=1.4.0
+scikit-learn=0.23.2
+numpy=1.19.1
+pandas=1.1.2
+pubchempy=1.0.4
