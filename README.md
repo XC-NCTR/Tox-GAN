@@ -5,9 +5,9 @@ We further exemplified the potential utilities of the proposed TGx-GAN in facili
 
 This repository contains the programming code we developed for this paper. For more details, please refer to our paper.
 ## Python library requirements:
-python=3.8.5
-pytorch=1.4.0
-scikit-learn=0.23.2
-numpy=1.19.1
-pandas=1.1.2
-pubchempy=1.0.4
+python=3.8.5<br>
+pytorch=1.4.0<br>
+scikit-learn=0.23.2<br>
+numpy=1.19.1<br>
+pandas=1.1.2<br>
+pubchempy=1.0.4<br>
