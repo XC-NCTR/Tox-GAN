@@ -12,6 +12,9 @@ numpy=1.19.1<br>
 pandas=1.1.2<br>
 pubchempy=1.0.4<br>
 ## Codes description:
+### Microarray Data Normalization
+  1. Run normalization.R (Rscript normalization.R) to normalize microarray data
+
 ### Molecular representaiton
   1. Run getSMILES.py with python to retrieve SMILES strings for compounds.
   2. Run getMolecularDescriptors.py to calculate numeric molecular representations.
