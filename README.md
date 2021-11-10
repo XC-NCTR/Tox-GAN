@@ -11,8 +11,9 @@ pandas=1.1.2<br>
 pubchempy=1.0.4<br>
 ## Codes description:
 ### Microarray Data Normalization
-  1. Run normalization.R (Rscript normalization.R) to normalize microarray data
-
+  1. Run normalization.R (Rscript normalization.R) to normalize microarray data.
+  2. Run info.R to match treatment conditions and gene expression data.
+  3. Run logFC.R to calculate fold change profiles for each treatment condition.
 ### Molecular representaiton
   1. Run getSMILES.py with python to retrieve SMILES strings for compounds.
   2. Run getMolecularDescriptors.py to calculate numeric molecular representations.
