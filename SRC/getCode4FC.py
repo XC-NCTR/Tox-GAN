@@ -20,7 +20,6 @@ E = torch.tensor(E).float()
 with open('../Data/hyperparameter_AE4Exp.json') as fp:
     hparam = json.load(fp)
 
-hparam['epoch'] = 10000
 hparam['save_path'] = '../AE4Exp/FC_repeat/'
 
 if not os.path.exists(hparam['save_path']):

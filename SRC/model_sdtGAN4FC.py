@@ -58,7 +58,7 @@ class Generator(nn.Module):
         )
 
     def forward(self, noise, Stru, Time, Dose):
-        # Concatenate Stru and noise_Exp to produce input
+        # Concatenate condition and noise to produce input
         gen_input = torch.cat([noise, Stru, Time, Dose], -1)
         Exp = self.model(gen_input)
         return Exp
@@ -81,14 +81,10 @@ class Discriminator(nn.Module):
         )
 
     def forward(self, Exp, Stru, Time, Dose):
-        # Concatenate label embedding and image to produce input
+        # Concatenate condition and real_FC to produce input
         d_in = torch.cat((Exp, Stru, Time, Dose), -1)
         validity = self.model(d_in)
         return validity
-
-
-# # Loss functions
-# adversarial_loss = torch.nn.MSELoss()
 
 # Loss weight for gradient penalty
 lambda_gp = 10
@@ -102,16 +98,17 @@ if cuda:
     discriminator.cuda()
     # adversarial_loss.cuda()
 
-# Configure data_train loader
+# Configure data loader
+path = r'../' # please set your own path
+Stru = pd.read_csv(os.path.join(path, 'Data', 'MolDescriptors.tsv'), index_col=0, sep="\t")
+Exp = pd.read_csv(os.path.join(path, 'Data', 'ExpCode_FC_repeat.tsv'), index_col=0, sep="\t")
+CEL_info = pd.read_csv(os.path.join(path, 'Data', 'open_tggates_cel_file_attribute.csv'))
 
-Stru = pd.read_csv(os.path.join(path, 'Data/MolDescriptors_TGGATEs.tsv'), index_col=0, sep="\t")
-Exp = pd.read_csv(os.path.join(path, 'Data/ExpCode_FC_repeat.tsv'), index_col=0, sep="\t")
-CEL_info = pd.read_csv(os.path.join(path, 'Data/open_tggates_cel_file_attribute.csv'))
-
-compounds = pd.read_csv(os.path.join(path, 'Data/Compounds_Repeat.txt'), sep="\t")
+compounds = pd.read_csv(os.path.join(path, 'Data', 'Compounds_Repeat.txt'), sep="\t")
 flag = [Stru.index[i] in compounds.Name.to_list() for i in range(len(Stru))]
 Stru = Stru[flag]  # 138 in total
-S = MinMaxScaler().fit_transform(Stru)
+scaler = MinMaxScaler(feature_range=(-1, 1))
+S = scaler.fit_transform(Stru)
 Stru = pd.DataFrame(S, columns=Stru.columns, index=Stru.index)
 Stru = Stru.iloc[0:110]  # ~80% as training set
 flag = (CEL_info.ORGAN == 'Liver') & (CEL_info.SINGLE_REPEAT_TYPE == 'Repeat') & (CEL_info.DOSE_LEVEL != 'Control')
@@ -123,8 +120,9 @@ CEL_info = CEL_info[flag]
 # CEL_info = CEL_info[(CEL_info.DOSE_LEVEL == opt.model.split('_')[0]) &
 #                     (CEL_info.SACRIFICE_PERIOD == opt.model.split('_')[1]+' day')]
 
-# E = MinMaxScaler().fit_transform(Exp)
-# Exp = pd.DataFrame(E, columns=Exp.columns, index=Exp.index)
+scaler = MinMaxScaler(feature_range=(-1, 1))
+E = scaler.fit_transform(Exp)
+Exp = pd.DataFrame(E, columns=Exp.columns, index=Exp.index)
 
 S = pd.DataFrame(columns=Stru.columns)
 E = pd.DataFrame(columns=Exp.columns)
@@ -161,11 +159,13 @@ for i in range(len(CEL_info)):
         D.append(Dose(CEL_info.iloc[i].DOSE_LEVEL))
 
 S = torch.tensor(S.to_numpy(dtype=np.float64), device=device).float()
-min_max_scaler = MinMaxScaler()
-E = min_max_scaler.fit_transform(E)
 E = torch.tensor(E.to_numpy(dtype=np.float64), device=device).float()
-T = torch.tensor(T, device=device).float().reshape(len(T), -1)
-D = torch.tensor(D, device=device).float().reshape(len(D), -1)
+scaler = MinMaxScaler(feature_range=(-1, 1))
+T = scaler.fit_transform(np.array(T).reshape(len(T), -1))
+T = torch.tensor(T, device=device)
+scaler = MinMaxScaler(feature_range=(-1, 1))
+D = scaler.fit_transform(np.array(D).reshape(len(D), -1))
+D = torch.tensor(D, device=device)
 dataset = torch.utils.data.TensorDataset(S, E, T, D)
 dataloader = torch.utils.data.DataLoader(dataset, batch_size=opt.batch_size, shuffle=True)
 
@@ -218,7 +218,7 @@ for epoch in range(opt.n_epochs):
 
         optimizer_D.zero_grad()
 
-        # Sample noise and Stru as generator input
+        # Sampling noise and and Stru, Time, Dose as generator input
         z = torch.randn(batch_size, opt.Z_dim).to(device)
 
         # Generate a batch of Exp
@@ -226,17 +226,14 @@ for epoch in range(opt.n_epochs):
 
         validity_real = discriminator(Exp, Stru, Time, Dose)
         # # Loss for real Exp
-        # d_real_loss = adversarial_loss(validity_real, valid)
 
         validity_fake = discriminator(gen_Exp.detach(), Stru, Time, Dose)
         # # Loss for fake Exp
-        # d_fake_loss = adversarial_loss(validity_fake, fake)
+
         gradient_penalty = compute_gradient_penalty(discriminator, Exp, gen_Exp, Stru, Time, Dose)
         # Adversarial loss
         d_loss = -torch.mean(validity_real) + torch.mean(validity_fake) + lambda_gp * gradient_penalty
-
         # # Total discriminator loss
-        # d_loss = (d_real_loss + d_fake_loss) / 2
 
         d_loss.backward()
         optimizer_D.step()
@@ -251,7 +248,6 @@ for epoch in range(opt.n_epochs):
             # Train on fake Exp
             validity = discriminator(gen_Exp, Stru, Time, Dose)
             g_loss = -torch.mean(validity)
-            # g_loss = adversarial_loss(validity, valid)
             g_loss.backward()
             optimizer_G.step()
 
@@ -263,6 +259,6 @@ for epoch in range(opt.n_epochs):
     if epoch % opt.interval == 0:
         torch.save(generator.state_dict(), os.path.join(path, 'model_sdtGAN4FC', 'generator_{}'.format(epoch)))
         # torch.save(discriminator.state_dict(),
-        #            os.path.join(path, 'model_sdtGAN4Exp', 'discriminator_{}'.format(opt.model)))
+        #            os.path.join(path, 'model_sdtGAN4FC', 'discriminator_{}'.format(opt.model)))
     # end = time.time()
     # print('time for epoch {}:'.format(epoch + 1), end - start)
