@@ -10,7 +10,7 @@ numpy=1.19.1<br>
 pandas=1.1.2<br>
 pubchempy=1.0.4<br>
 ## Codes description:
-Please NOTE that if you want to reuse our code, please follow our instructions below and comments in the scripts to set up your own working directory and specify parameters according to your data and environment.
+**Please NOTE that if you want to reuse our code, please follow our instructions below and comments in the scripts to set up your own working directory and specify parameters according to your data and environment.**
 ### Microarray Data Normalization
   1. Run normalization.R (Rscript normalization.R) to normalize microarray data.
   2. Run info.R to match treatment conditions and gene expression data.
@@ -22,8 +22,8 @@ Please NOTE that if you want to reuse our code, please follow our instructions b
   1. AE4Exp.py is the autoencoder we used to reduce the dimensions of transcriptomic profiles.
   2. Run getCode4Exp.py or getCode4FC.py to extract and incorporate transcriptomic representations.
   3. Run the model_sdtGAN4Exp.py or model_sdtGAN4FC.py to train Tox-GAN model (sepcify parameters for training, and the results will be stored in specified location.). The training process may take several days to complete, depending on the configuration.
-  4. Once training is completed, you can use generateExp.py or generateFC.py to generate transcriptomic profiles.
-NOTE: if you are interested, our trained models generator_Exp and generator_FC are available atXXX due to the github file size limit.
+  4. Once training is completed, you can use generateExp.py or generateFC.py to generate transcriptomic profiles.<br>
+**NOTE: if you are interested, our trained models generator_Exp and generator_FC are available atXXX due to the github file size limit.**
 ### liver necrosis prediction
   1. AE_DNN.py is the architecture of the classifier which is used to predcit liver necrosis.
   2. run eval_AEDNN_real.py/eval_AEDNN_gen.py to evaluate performance.
