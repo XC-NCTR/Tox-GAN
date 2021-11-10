@@ -20,8 +20,8 @@ pubchempy=1.0.4<br>
 ### Tox-GAN Development
   1. AE4Exp.py is the autoencoder we used to reduce the dimensions of transcriptomic profiles.
   2. Run getCode4Exp.py or getCode4FC.py to extract and incorporate transcriptomic representations.
-  3. Run the model.py to training Tox-GAN model (sepcify parameters for training, and the results will be stored in specified location.). The traiing process may take several days to complete, depending on the configuration.
-  4. Once traiing is completed, you can use getExProfile.py/getFCprofile.py to generate transcriptomic profiles.
+  3. Run the model_sdtGAN4Exp.py or model_sdtGAN4FC.py to train Tox-GAN model (sepcify parameters for training, and the results will be stored in specified location.). The training process may take several days to complete, depending on the configuration.
+  4. Once training is completed, you can use getExProfile.py/getFCprofile.py to generate transcriptomic profiles.
 ### liver necrosis prediction
   1. AE_DNN.py is the architecture of the classifier which is used to predcit liver necrosis.
   2. run eval_AEDNN_real.py/eval_AEDNN_gen.py to evaluate performance.
