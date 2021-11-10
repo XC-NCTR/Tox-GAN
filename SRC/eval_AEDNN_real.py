@@ -31,9 +31,9 @@ def evaluate_model(realLabel, prediction):
            macro_recall, macro_precision, micro_recall, micro_precision
 
 
-path = r'/account/xchen/workspace/TGx_GAN'
+path = r'../'  # please set your own path
 
-Labels = pd.read_csv("/account/xchen/workspace/TGx_GAN/Data/Necrosis_Label.txt", sep="\t")
+Labels = pd.read_csv(os.path.join(path, 'Data' , 'Necrosis_Label.txt'), sep="\t")
 train_Info = Labels[Labels.Training_Test == 'Training']
 
 Exp = pd.read_csv(os.path.join(path, 'Results', 'ExpPerTreatment.tsv'), sep='\t')
@@ -46,9 +46,9 @@ for i in range(len(Labels)):
             dataInfo.SACRIFICE_PERIOD == Labels.SACRIFICE_PERIOD[i]) & (dataInfo.DOSE_LEVEL == Labels.DOSE_LEVEL[i])
     data[i] = Exp[flag]
 
-with open('/account/xchen/workspace/TGx_GAN/Data/hyperparameter_AEDNN.json') as fp:
+with open(os.path.join(path, 'Data' , 'hyperparameter_AEDNN.json')) as fp:
     hparam = json.load(fp)
-hparam['save_path'] = "/account/xchen/workspace/TGx_GAN/AE_DNN/real/"
+hparam['save_path'] = "../AE_DNN/real/"
 
 # rskf = RepeatedStratifiedKFold(n_splits=hparam['n_splits'], n_repeats=hparam['n_repeats'], random_state=2021)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
