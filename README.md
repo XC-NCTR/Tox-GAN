@@ -23,7 +23,7 @@ pubchempy=1.0.4<br>
   2. Run getCode4Exp.py or getCode4FC.py to extract and incorporate transcriptomic representations.
   3. Run the model_sdtGAN4Exp.py or model_sdtGAN4FC.py to train Tox-GAN model (sepcify parameters for training, and the results will be stored in specified location.). The training process may take several days to complete, depending on the configuration.
   4. Once training is completed, you can use generateExp.py or generateFC.py to generate transcriptomic profiles.<br>
-**NOTE: if you are interested, our trained models generator_Exp and generator_FC are available atXXX due to the github file size limit.**
+**NOTE: if you are interested, our trained models generator_Exp and generator_FC are available at https://drive.google.com/drive/folders/1hOcoiu72b_d4XVw72jPtKORf07UuXomm?usp=sharing due to the github file size limit.**
 ### liver necrosis prediction
   1. AE_DNN.py is the architecture of the classifier which is used to predcit liver necrosis.
   2. run eval_AEDNN_real.py/eval_AEDNN_gen.py to evaluate performance.
