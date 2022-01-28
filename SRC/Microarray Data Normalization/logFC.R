@@ -1,4 +1,4 @@
-setwd("/account/bgong/workspace/TGP2012/Rat/in_vivo/Liver/Repeat")
+setwd("../../Data")   # please set your own working directory
 
 library(tidyverse)
 
