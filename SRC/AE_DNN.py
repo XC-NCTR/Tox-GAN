@@ -18,7 +18,7 @@ class build_model(nn.Module):
         drop_rate = hyperparameter['drop_rate']
         self.epoch = hyperparameter['epoch']
         self.n_repeats = hyperparameter['n_repeats']
-        #self.n_splits = hyperparameter['n_splits']
+        self.n_splits = hyperparameter['n_splits']
         self.save_path = hyperparameter['save_path']
         self.patience = hyperparameter['patience']
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
