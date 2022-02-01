@@ -1,0 +1,14 @@
+{
+"input_size": 31099,
+"output_size": 1, 
+"AE_size": 1000,  
+"AE_lr": 0.001, 
+"DNN_lr": 0.001, 
+"drop_rate": 0.5, 
+"threshold": 0.5, 
+"epoch": 1000,
+"n_repeats": 1, 
+"n_splits": 1, 
+"patience": 30,
+"save_path": ""
+}
