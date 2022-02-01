@@ -33,13 +33,14 @@ def evaluate_model(realLabel, prediction):
 
 path = r'../'  # please set your own path
 
-Labels = pd.read_csv(os.path.join(path, 'Data' , 'Necrosis_Label.txt'), sep="\t")
+Labels = pd.read_csv(os.path.join(path, 'Data' , 'Necrosis_Label.txt'), sep="\t") # please refer to our supplementary Table S5
 train_Info = Labels[Labels.Training_Test == 'Training']
 
-Exp = pd.read_csv(os.path.join(path, 'Results', 'ExpPerTreatment.tsv'), sep='\t')
+Exp = pd.read_csv(os.path.join(path, 'Results', 'ExpPerTreatment.tsv'), sep='\t') # The averaged gene expression of each treatment condition
 Exp[['realExp', 'genExp']] = Exp[['realExp', 'genExp']].applymap(literal_eval)
 Exp = np.array(Exp.realExp.to_list())
 dataInfo = pd.read_csv(os.path.join(path, 'Results', 'MeasuresPerTreatment_pearsonr.tsv'), sep='\t')
+# This file is just used to map treatment information and their averaged gene expression
 data = np.zeros(shape=(len(Labels), Exp.shape[1]))
 for i in range(len(Labels)):
     flag = (dataInfo.COMPOUND_ABBREVIATION == Labels.COMPOUND_ABBREVIATION[i]) & (
