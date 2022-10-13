@@ -27,8 +27,8 @@ if not os.path.exists(hparam['save_path']):
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-dataset = torch.utils.data_train.TensorDataset(E)
-dataloader = torch.utils.data_train.DataLoader(dataset, batch_size=256, shuffle=True)
+dataset = torch.utils.data.TensorDataset(E)
+dataloader = torch.utils.data.DataLoader(dataset, batch_size=256, shuffle=True)
 model = build_model(hparam)
 model.to(device)
 model.fit(dataloader, 0)
